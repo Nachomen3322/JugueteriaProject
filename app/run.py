@@ -28,4 +28,5 @@ app.register_blueprint(juguete_controller.juguete_bp)
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    # Asegúrate de que tu aplicación escuche en todas las interfaces de red y en el puerto correcto
+    app.run(host='0.0.0.0', port=8080, debug=True)
