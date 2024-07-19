@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/adminlte/plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- AdminLTE Theme style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/adminlte/dist/css/adminlte.min.css') }}">
+    <title>{{ title }}</title>
+</head>
+
+<body class="hold-transition layout-top-nav">
+    {% if current_user.is_authenticated %}
+    <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+        <div class="container">
+            <a  href="{{ url_for('juguete.list_juguetes') }}" class="navbar-brand">
+              <i class="bi bi-shop" class="brand-image img-circle elevation-3" style="opacity: .8"></i>
+              <span class="brand-text font-weight-light">Tienda Online</span>
+            </a>
+      
+            <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+      
+            <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+            <ul class="navbar-nav">
+                {% if current_user.has_role("admin") %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('user.list_users') }}">Lista de Usuarios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('juguete.create_juguete') }}">Crear Juguete</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('user.profile', id=current_user.id) }}">Perfil</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Más opciones</a>
+                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                        <li><a class="dropdown-item" href="{{ url_for('juguete.list_juguetes') }}">Lista de Juguetes</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('user.logout') }}">Cerrar Sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="form-inline ml-0 ml-md-3">
+                <div class="input-group input-group-sm">
+                  <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                  <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+        </div>
+        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+            <!-- Menú de Mensajes -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fas fa-comments"></i>
+                    <span class="badge badge-danger navbar-badge">3</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <a href="#" class="dropdown-item">
+                        <!-- Mensaje -->
+                        <div class="media">
+                            <img src="{{ url_for('static', filename='lib/adminlte/dist/img/user1-128x128.jpg') }}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">Brad Diesel
+                                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">Llámame cuando puedas...</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> Hace 4 horas</p>
+                            </div>
+                        </div>
+                        <!-- Fin de Mensaje -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <!-- Mensaje -->
+                        <div class="media">
+                            <img src="{{ url_for('static', filename='lib/adminlte/dist/img/user8-128x128.jpg') }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">John Pierce
+                                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">Recibí tu mensaje, bro</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> Hace 4 horas</p>
+                            </div>
+                        </div>
+                        <!-- Fin de Mensaje -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">Ver Todos los Mensajes</a>
+                </div>
+            </li>
+            <!-- Menú de Notificaciones -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge">15</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-header">15 Notificaciones</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 4 mensajes nuevos
+                        <span class="float-right text-muted text-sm">3 minutos</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-users mr-2"></i> 8 solicitudes de amistad
+                        <span class="float-right text-muted text-sm">12 horas</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-file mr-2"></i> 3 nuevos reportes
+                        <span class="float-right text-muted text-sm">2 días</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">Ver Todas las Notificaciones</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                    <i class="fas fa-th-large"></i>
+                </a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+    {% endif %}
+    
+    <div class="wrapper">
+  
+        <div class="content_base">
+            {% block content %}
+            {% endblock %}
+        </div>
+      
+        <!-- Footer -->
+        <footer class="main-footer">
+            <!-- Derecha -->
+            <div class="float-right d-none d-sm-inline">
+                <div class="card text-bg-dark">
+                    <h3>Donde encontrarnos</h3>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.4216095244838!2d-68.13253932406482!3d-16.50479944085059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f2064df652367%3A0xddb4c11ab8c8d666!2sMonoblock%20UMSA!5e0!3m2!1ses-419!2sbo!4v1721359010231!5m2!1ses-419!2sbo" width="500" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>>
+                  </div>
+            </div>
+            <!-- Izquierda -->
+            <div class="footer_basic">
+                <div class="row">
+                    <div class="col-md-3 footer-column">
+                        <h4>Atención al cliente:</h4>
+                        <ul>
+                            <li><a href="#">Contactar</a></li>
+                            <li><a href="#">Preguntas Frecuentes</a></li>
+                            <li><a href="#">Formas de pago</a></li>
+                            <li><a href="#">Envíos/Devoluciones</a></li>
+                            <li><a href="#">Trabaja con nosotros</a></li>
+                            <li><a href="#">Cómo comprar</a></li>
+                            <li><a href="#">Formulario Desistimiento</a></li>
+                            <li><a href="#">Opiniones de nuestros clientes</a></li>
+                        </ul>
+                    </div>
+            <strong><div class="social-icons">
+                <a href="https://www.facebook.com/tu_pagina" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/tu_pagina" target="_blank" class="btn btn-danger">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/tu_numero" target="_blank" class="btn btn-success">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div> Derechos de autor &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> Todos los derechos reservados.
+           </div>
+           
+        </footer>
+
+    </div>
+  
+    <!-- SCRIPTS NECESARIOS -->
+    <!-- jQuery -->
+    <script src="{{ url_for('static', filename='lib/adminlte/plugins/jquery/jquery.min.js') }}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ url_for('static', filename='lib/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ url_for('static', filename='lib/adminlte/dist/js/adminlte.min.js') }}"></script>
+    <!-- AdminLTE para demostraciones -->
+    <script src="{{ url_for('static', filename='lib/adminlte/dist/js/demo.js') }}"></script>
+</body>
+</html>

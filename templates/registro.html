@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="title_2">Registrar Usuario</h2>
+<form method="post">
+    <div class="field">
+        <label for="nombre">Nombre:</label>
+        <div class="control">
+            <input type="text" id="nombre" name="nombre" required class="input">
+        </div>
+    </div>
+    <div class="field">
+        <label for="apellido">Apellido:</label>
+        <div class="control">
+            <input type="text" id="apellido" name="apellido" required class="input">
+        </div>
+    </div>
+    <div class="field">
+        <label for="username">Nombre de Usuario:</label>
+        <div class="control">
+            <input type="text" id="username" name="username" required class="input">
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="celular">Numero de celular:</label>
+        <div class="control">
+            <input type="text" id="celular" name="celular" required class="input">
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="direccion">Direccion:</label>
+        <div class="control">
+            <input type="text" id="direccion" name="direccion" required class="input">
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="ciudad">Ciudad:</label>
+        <div class="control">
+            <input type="text" id="ciudad" name="ciudad" required class="input">
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="pais">Pais:</label>
+        <div class="control">
+            <input type="text" id="pais" name="pais" required class="input">
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="password">Contraseña:</label>
+        <div class="control">
+            <input type="password" id="password" name="password" required class="input">
+        </div>
+    </div>
+    <div class="field">
+        <label for="role">Rol:</label>
+        <div class="control">
+            <input type="text" id="role" name="role" required class="input">
+        </div>
+    </div>
+    <input type="submit" value="Registrar" class="btn btn-primary">
+</form>
+{% endblock %}
